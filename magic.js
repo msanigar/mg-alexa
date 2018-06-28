@@ -7,7 +7,7 @@ const axios = require("axios");
     return order specific details
 */
 
-const magic = () => {
+var p = new Promise(function(resolve, reject) {
   axios({
     method: "POST",
     headers: { "x-api-key": "fNjoFuIfYBnnysXE6dmw2EPnjuEr2Ss8vJ31YoW1" },
@@ -80,18 +80,23 @@ const magic = () => {
   
         switch(status) {
           case 'out_for_delivery':
-            return `hey ${name}, your order is out for delivery babe, it'll be with you soon!`
+            return resolve(`hey ${name}, your order is out for delivery babe, it'll be with you soon!`)
           case 'Collected':
-            return `Hey ${name}, We've just grabbing your stuff and getting it ready!`
+            return resolve(`Hey ${name}, We've just grabbing your stuff and getting it ready!`)
           default:
-            return `Hey ${name}, we're on it babe`
+            return resolve(`Hey ${name}, we're on it babe`)
         }
   
       })
       .catch(err => {
-        console.log("oops, that didn't work!", err);
+        reject("oops, that didn't work!", err);
       });
-  };  
-}
+  }; 
 
-export default magic
+});
+
+p.then(function() { 
+	// call alexa function
+}).catch(function() {
+	console.log('failed!')
+})
