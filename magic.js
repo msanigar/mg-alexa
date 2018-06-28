@@ -47,6 +47,9 @@ const fetchOrder = token => {
       query: `query {
         orderById(orderId: 27931086) {
           status
+        },
+        myCustomerInfo {
+          firstname
         }
       }`
     },
@@ -54,6 +57,9 @@ const fetchOrder = token => {
   })
     .then(res => {
       console.log(res.data);
+      
+      let name = res.data.data.myCustomerInfo.firstname.toLowerCase()
+      let status = res.data.data.orderById.status
 
       /*
         with_currier
@@ -71,13 +77,13 @@ const fetchOrder = token => {
         ready_for_disptach
       */
 
-      switch(res.data.data.orderById.status) {
+      switch(status) {
         case 'out_for_delivery':
-          return 'your order is out for delivery babe, it\'ll be with you soon!'
+          return `hey ${name}, your order is out for delivery babe, it'll be with you soon!`
         case 'Collected':
-          return 'We\'ve just grabbing your stuff and getting it ready!'
+          return `Hey ${name}, We've just grabbing your stuff and getting it ready!`
         default:
-          return 'we\'re on it babe'
+          return `Hey ${name}, we're on it babe`
       }
 
     })
