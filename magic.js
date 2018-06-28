@@ -26,10 +26,10 @@ axios({
   url: "https://api-com-testnp.mgnonprod.co.uk/customersignin"
 })
   .then(res => {
-    // console.log(
-    //   "successfully authenticated, here's your token! ",
-    //   res.data.MGLoginServiceCustomerLoginResponse.Token
-    // );
+    console.log(
+      "successfully authenticated, here's your token! ",
+      res.data.MGLoginServiceCustomerLoginResponse.Token
+    );
     return fetchOrder(res.data.MGLoginServiceCustomerLoginResponse.Token);
   })
   .catch(err => {
@@ -53,7 +53,7 @@ const fetchOrder = token => {
     url: "https://api-com-testnp.mgnonprod.co.uk/graphql"
   })
     .then(res => {
-      //console.log(res.data);
+      console.log(res.data);
 
       /*
         with_currier
@@ -73,11 +73,11 @@ const fetchOrder = token => {
 
       switch(res.data.data.orderById.status) {
         case 'out_for_delivery':
-          return console.log('your order is out for delivery babe, it\'ll be with you soon!')
+          return 'your order is out for delivery babe, it\'ll be with you soon!'
         case 'Collected':
-          return console.log('We\'ve just grabbing your stuff and getting it ready!')
+          return 'We\'ve just grabbing your stuff and getting it ready!'
         default:
-          return console.log('we\'re on it babe')
+          return 'we\'re on it babe'
       }
 
     })
