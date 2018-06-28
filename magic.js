@@ -9,7 +9,7 @@ const axios = require("axios");
 
 axios({
   method: "POST",
-  headers: { "x-api-key": "nBASAcND3za1G4z8HBkzt3dSuC4hHK933QkMEyLD" },
+  headers: { "x-api-key": "fNjoFuIfYBnnysXE6dmw2EPnjuEr2Ss8vJ31YoW1" },
   data: {
     Context: {
       MessageID: "123",
@@ -19,11 +19,11 @@ axios({
       Timestamp: "2018-01-01 13:00:00"
     },
     MGLoginServiceCustomerLoginRequest: {
-      EmailAddress: "myles.sanigar@missguided.com",
+      EmailAddress: "myles.sanigar@gmail.com",
       Password: "fishandchips"
     }
   },
-  url: "https://api-com-sit.mgnonprod.co.uk/customersignin"
+  url: "https://api-com-testnp.mgnonprod.co.uk/customersignin"
 })
   .then(res => {
     console.log(
@@ -40,22 +40,21 @@ const fetchOrder = token => {
   axios({
     method: "POST",
     headers: {
-      "x-api-key": "nBASAcND3za1G4z8HBkzt3dSuC4hHK933QkMEyLD",
+      "x-api-key": "fNjoFuIfYBnnysXE6dmw2EPnjuEr2Ss8vJ31YoW1",
       AUthorization: token
     },
     data: {
       query: `query {
-        myCustomerInfo {
-          id,
-          email,
-          firstname
+        orderById(orderId: 27950103) {
+          status
         }
       }`
     },
-    url: "https://api-com-sit.mgnonprod.co.uk/graphql"
+    url: "https://api-com-testnp.mgnonprod.co.uk/graphql"
   })
     .then(res => {
       console.log(res.data);
+      // return the status here
     })
     .catch(err => {
       console.log("oops, that didn't work!", err);
