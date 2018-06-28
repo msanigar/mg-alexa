@@ -1,5 +1,3 @@
-import { ManagedInstanceId } from "aws-sdk/clients/ssm";
-
 const axios = require("axios");
 
 /*
