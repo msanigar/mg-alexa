@@ -33,6 +33,21 @@ const HelloWorldIntentHandler = {
   },
 };
 
+const WhereIsMyOrderIntentHandler = {
+  canHandle(handlerInput) {
+    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+      && handlerInput.requestEnvelope.request.intent.name === 'WhereIsMyOrder';
+  },
+  handle(handlerInput) {
+    const speechText = 'What Order? I have no record babe';
+
+    return handlerInput.responseBuilder
+      .speak(speechText)
+      .withSimpleCard('Hello World', speechText)
+      .getResponse();
+  },
+};
+
 const HelpIntentHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
@@ -98,7 +113,8 @@ exports.handler = skillBuilder
     HelloWorldIntentHandler,
     HelpIntentHandler,
     CancelAndStopIntentHandler,
-    SessionEndedRequestHandler
+    SessionEndedRequestHandler,
+    WhereIsMyOrderIntentHandler
   )
   .addErrorHandlers(ErrorHandler)
 .lambda();
