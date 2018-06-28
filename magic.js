@@ -26,10 +26,10 @@ axios({
   url: "https://api-com-testnp.mgnonprod.co.uk/customersignin"
 })
   .then(res => {
-    console.log(
-      "successfully authenticated, here's your token! ",
-      res.data.MGLoginServiceCustomerLoginResponse.Token
-    );
+    // console.log(
+    //   "successfully authenticated, here's your token! ",
+    //   res.data.MGLoginServiceCustomerLoginResponse.Token
+    // );
     return fetchOrder(res.data.MGLoginServiceCustomerLoginResponse.Token);
   })
   .catch(err => {
@@ -45,7 +45,7 @@ const fetchOrder = token => {
     },
     data: {
       query: `query {
-        orderById(orderId: 27950103) {
+        orderById(orderId: 27931086) {
           status
         }
       }`
@@ -53,8 +53,33 @@ const fetchOrder = token => {
     url: "https://api-com-testnp.mgnonprod.co.uk/graphql"
   })
     .then(res => {
-      console.log(res.data);
-      // return the status here
+      //console.log(res.data);
+
+      /*
+        with_currier
+        Out_for_delivery
+        delivered
+        Failed
+        Collected
+        Refunded 
+        pending
+        processing
+        Order_recieved 
+        Order_processing
+        Cancelled
+        Complete
+        ready_for_disptach
+      */
+
+      switch(res.data.data.orderById.status) {
+        case 'out_for_delivery':
+          return console.log('your order is out for delivery babe, it\'ll be with you soon!')
+        case 'Collected':
+          return console.log('We\'ve just grabbing your stuff and getting it ready!')
+        default:
+          return console.log('we\'re on it babe')
+      }
+
     })
     .catch(err => {
       console.log("oops, that didn't work!", err);
