@@ -28,7 +28,7 @@ exports.handler = async function (event, context) {
 const LaunchRequestHandler = {
  
 
-git remote set-url origin git://new.url.here   canHandle(handlerInput) {
+canHandle(handlerInput) {
         return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
     },
     handle(handlerInput) {
