@@ -95,10 +95,14 @@ var p = new Promise(function(resolve, reject) {
 
 });
 
-p.then(function(arg) { 
-  // arg is the string that is resolved
-  console.log(arg)
-  // someFunc(arg)
-}).catch(function(err) {
-	console.log('failed!', err)
-})
+const magic = () => {
+  p.then(function(arg) { 
+    // arg is the string that is resolved
+    console.log(arg)
+    // someFunc(arg)
+  }).catch(function(err) {
+    console.log('failed!', err)
+  })
+}
+
+export default magic
