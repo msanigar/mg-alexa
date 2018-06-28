@@ -95,8 +95,10 @@ var p = new Promise(function(resolve, reject) {
 
 });
 
-p.then(function() { 
-	// call alexa function
-}).catch(function() {
-	console.log('failed!')
+p.then(function(arg) { 
+  // arg is the string that is resolved
+  console.log(arg)
+  // someFunc(arg)
+}).catch(function(err) {
+	console.log('failed!', err)
 })
