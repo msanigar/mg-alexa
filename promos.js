@@ -7,6 +7,7 @@ var promos = new Promise(function(resolve, reject) {
     .then(res => {
       let text = res.data[0].content.rendered;
       let formattedText = text.toString().replace(/(<([^>]+)>)/g, "");
+      console.log(formattedText);
       let formattedString = `hey babes, grab yourself a deal with our current promo codes, ${formattedText}`
       return resolve(formattedString);
     })

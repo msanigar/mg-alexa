@@ -1,18 +1,18 @@
 const Alexa = require('ask-sdk-core');
-const wismo = require('./wismo');
-const promo = require('./promo');
+const wismo = require('./wismo.js');
+const promo = require('./promos.js');
 
 const LaunchRequestHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
   },
   handle(handlerInput) {
-    const speechText = 'Welcome to the Alexa Skills Kit, you can say hello!';
+    const speechText = 'Hey Babe! Wanna know some hot goss? track your order? or how about a promo code?';
 
     return handlerInput.responseBuilder
       .speak(speechText)
       .reprompt(speechText)
-      .withSimpleCard('Hello World', speechText)
+      .withSimpleCard('Hey Babe', speechText)
       .getResponse();
   },
 };
@@ -133,7 +133,7 @@ exports.handler = skillBuilder
     CancelAndStopIntentHandler,
     SessionEndedRequestHandler,
     WhereIsMyOrderIntentHandler,
-    GetPromoIntentHandler,
+    GetPromoIntentHandler
   )
   .addErrorHandlers(ErrorHandler)
 .lambda();
