@@ -1,5 +1,6 @@
 const Alexa = require('ask-sdk-core');
-const wismo = require('./wismo')
+const wismo = require('./wismo');
+const promo = require('./promo');
 
 const LaunchRequestHandler = {
   canHandle(handlerInput) {
@@ -43,6 +44,23 @@ const WhereIsMyOrderIntentHandler = {
       return handlerInput.responseBuilder
         .speak(arg)
         .withSimpleCard('WISMO', arg)
+        .getResponse();
+    })
+  },
+};
+
+const WhereIsMyOrderIntentHandler = {
+  canHandle(handlerInput) {
+    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+      && handlerInput.requestEnvelope.request.intent.name === 'WhereIsMyOrder';
+  },
+  handle(handlerInput) {
+    console.log("start handler")
+    return promo.then(function(arg) {
+      console.log("response = ", arg);
+      return handlerInput.responseBuilder
+        .speak(arg)
+        .withSimpleCard('Some Promo Codes', arg)
         .getResponse();
     })
   },
