@@ -49,10 +49,10 @@ const WhereIsMyOrderIntentHandler = {
   },
 };
 
-const WhereIsMyOrderIntentHandler = {
+const GetPromoIntentHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
-      && handlerInput.requestEnvelope.request.intent.name === 'WhereIsMyOrder';
+      && handlerInput.requestEnvelope.request.intent.name === 'GetPromo';
   },
   handle(handlerInput) {
     console.log("start handler")
@@ -132,7 +132,8 @@ exports.handler = skillBuilder
     HelpIntentHandler,
     CancelAndStopIntentHandler,
     SessionEndedRequestHandler,
-    WhereIsMyOrderIntentHandler
+    WhereIsMyOrderIntentHandler,
+    GetPromoIntentHandler,
   )
   .addErrorHandlers(ErrorHandler)
 .lambda();
