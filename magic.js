@@ -27,10 +27,6 @@ var p = new Promise(function(resolve, reject) {
     url: "https://api-com-testnp.mgnonprod.co.uk/customersignin"
   })
     .then(res => {
-      console.log(
-        "successfully authenticated, here's your token! ",
-        res.data.MGLoginServiceCustomerLoginResponse.Token
-      );
       return fetchOrder(res.data.MGLoginServiceCustomerLoginResponse.Token);
     })
     .catch(err => {
@@ -57,8 +53,6 @@ var p = new Promise(function(resolve, reject) {
       url: "https://api-com-testnp.mgnonprod.co.uk/graphql"
     })
       .then(res => {
-        console.log(res.data);
-        
         let name = res.data.data.myCustomerInfo.firstname.toLowerCase()
         let status = res.data.data.orderById.status
   
@@ -86,13 +80,11 @@ var p = new Promise(function(resolve, reject) {
           default:
             return resolve(`Hey ${name}, we're on it babe`)
         }
-  
       })
       .catch(err => {
         reject("oops, that didn't work!", err);
       });
   }; 
-
 });
 
 const magic = () => {
@@ -105,4 +97,6 @@ const magic = () => {
   })
 }
 
-export default magic
+magic();
+
+module.exports = magic;
