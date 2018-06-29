@@ -8,6 +8,7 @@ const axios = require("axios");
 */
 
 var p = new Promise(function(resolve, reject) {
+  console.log("making token request");
   axios({
     method: "POST",
     headers: { "x-api-key": "fNjoFuIfYBnnysXE6dmw2EPnjuEr2Ss8vJ31YoW1" },
@@ -34,6 +35,7 @@ var p = new Promise(function(resolve, reject) {
     });
   
   const fetchOrder = token => {
+    console.log("making gql request");
     axios({
       method: "POST",
       headers: {
@@ -53,6 +55,7 @@ var p = new Promise(function(resolve, reject) {
       url: "https://api-com-testnp.mgnonprod.co.uk/graphql"
     })
       .then(res => {
+        console.log(res);
         let name = res.data.data.myCustomerInfo.firstname.toLowerCase()
         let status = res.data.data.orderById.status
   
@@ -80,6 +83,7 @@ var p = new Promise(function(resolve, reject) {
           default:
             return resolve(`Hey ${name}, we're on it babe`)
         }
+  
       })
       .catch(err => {
         reject("oops, that didn't work!", err);
@@ -87,16 +91,4 @@ var p = new Promise(function(resolve, reject) {
   }; 
 });
 
-const magic = () => {
-  p.then(function(arg) { 
-    // arg is the string that is resolved
-    console.log(arg)
-    // someFunc(arg)
-  }).catch(function(err) {
-    console.log('failed!', err)
-  })
-}
-
-magic();
-
-module.exports = magic;
+module.exports = p;
