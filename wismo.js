@@ -7,7 +7,7 @@ const axios = require("axios");
     return order specific details
 */
 
-var p = new Promise(function(resolve, reject) {
+var wismo = new Promise(function(resolve, reject) {
   console.log("making token request");
   axios({
     method: "POST",
@@ -91,4 +91,4 @@ var p = new Promise(function(resolve, reject) {
   }; 
 });
 
-module.exports = p;
+module.exports = wismo;

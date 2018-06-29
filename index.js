@@ -1,5 +1,5 @@
 const Alexa = require('ask-sdk-core');
-const p = require('./magic.js')
+const wismo = require('./wismo')
 
 const LaunchRequestHandler = {
   canHandle(handlerInput) {
@@ -38,7 +38,7 @@ const WhereIsMyOrderIntentHandler = {
   },
   handle(handlerInput) {
     console.log("start handler")
-    return p.then(function(arg) {
+    return wismo.then(function(arg) {
       console.log("response = ", arg);
       return handlerInput.responseBuilder
         .speak(arg)
