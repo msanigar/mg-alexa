@@ -7,11 +7,15 @@ const axios = require("axios");
     return order specific details
 */
 
+// API KEY has been removed from repo
+
+
 var wismo = new Promise(function(resolve, reject) {
   console.log("making token request");
+  console.log("DEBUG message, API key has been removed, please set manually");
   axios({
     method: "POST",
-    headers: { "x-api-key": "fNjoFuIfYBnnysXE6dmw2EPnjuEr2Ss8vJ31YoW1" },
+    headers: { "x-api-key": "" },
     data: {
       Context: {
         MessageID: "123",
