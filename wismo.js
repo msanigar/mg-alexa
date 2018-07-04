@@ -43,7 +43,7 @@ var wismo = new Promise(function(resolve, reject) {
     axios({
       method: "POST",
       headers: {
-        "x-api-key": "fNjoFuIfYBnnysXE6dmw2EPnjuEr2Ss8vJ31YoW1",
+        "x-api-key": "",
         AUthorization: token
       },
       data: {
